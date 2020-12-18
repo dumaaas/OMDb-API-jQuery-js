@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>The Open Movie DataBase</title>
+
+    <! -- Importovanje google-fontsa -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200&display=swap" rel="stylesheet">
+
+    <! -- Importovanje style.css fajla -->
+    <link rel="stylesheet" type="text/css" href="./style.css">
+
+    <! -- Importovanje bootstrap.css fajla -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <! -- Importovanje font-awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" />
+</head>
+
+<body>
+
+    <! -- Kod za pretragu i prikaz pronadjenih filmova/serija/igrica -->
+    <div id="top-part">
+        <p class="title">
+            <i class="fas fa-film"></i> The Open Movie DataBase
+        </p>
+        <p class="subtitle">
+            - Svi podaci o Vašim omiljenim filmovima i serijama na jednom mjestu! -
+        </p>
+    </div>
+
+    <div id="content">
+        <div class="movie">
+            <div class="top-part-movie">
+                <div class="animate">
+                    <p id="movies-num" class="movie-animation">
+                        You can search for a movie, TV Show or a game and it will appear here :)
+                    </p>
+                </div>
+            </div>
+            <div id="movie-div"></div>
+            <div class="movie-content"></div>
+        </div>
+        <div class="search">
+            <div class="search-title">
+                <p>
+                    Search for movie, TV show or a game
+                </p>
+                <div class="line"></div>
+            </div>
+            <div class="search-form">
+                <div class="search-field">
+                    <label for="movie-name">
+                        Title *
+                    </label>
+                    <input id="query-name" type="text" onkeydown="clearErrors()" placeholder="Insert name of movie or TV show..." spellcheck="false" autocomplete="off">
+                    <span id="validate-name"></span>
+                </div>
+                <div class="search-field">
+                    <label for="category">
+                        Category *
+                    </label>
+                    <select onClick="clearCategoryErrors()" name="category" id="query-category" required>
+                            <option disabled selected value=""> 
+                                -- select an option -- 
+                            </option>
+                            <option value="movie">
+                                Movie
+                            </option>
+                            <option value="series">
+                                TV Show
+                            </option>
+                            <option value="game">
+                                Game
+                            </option>
+                    </select>
+                    <span id="validate-category"></span>
+                </div>
+                <div class="search-field">
+                    <label for="movie-year">
+                            Release year 
+                    </label>
+                    <span>
+                        <input id="query-year" type="text" placeholder="Insert release year of movie or TV show..." spellcheck="false" autocomplete="off">
+                    </span>
+                </div>
+                <div class="search-field">
+                    <button onclick="searchMovies()" class="search-button">
+                        <i class="fas fa-search"></i>
+                        Search
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <! -- Kod za prikaz odabranog filma/serije/epizode/igrice -->
+    <div id="movie-show">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 left-part">
+                    <div id="img">
+                    </div>
+                    <div class="img-extend">
+                        <div class="button-img">
+                            <div id="movie-imdb-btn"></div>
+                        </div>
+                        <div class="button-img">
+                            <button onClick="goBack()" class="btn-search">
+                                <i class="fas fa-search"></i>
+                                Back to search
+                            </button>
+                        </div>
+                        <div class="button-img">
+                            <div id="button-tvshow"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-7 middle-part">
+                    <div class="movie-title">
+                        <p id="movie-title-name"></p>
+                    </div>
+                    <div class="movie-ratings">
+                        <i class="fas fa-star"></i>
+                        <div class="flex-rating">
+                            <p id="movie-rating"></p>
+                        </div>
+                    </div>
+                    <div class="row prf">
+                        <div class="col">
+                            <div id="episode-details"></div>
+                        </div>
+                    </div>
+                    <div class="overview">
+                        <p>
+                            OVERVIEW
+                        </p>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="movie-description">
+                                    <div class="movie-des">
+                                        <p class="heading-des">
+                                            Plot>
+                                        </p>
+                                        <hr class="about">
+                                        <div class="description">
+                                            <p id="movie-description"></p>
+                                        </div>
+                                    </div>
+                                    <div class="movie-des">
+                                        <p class="heading-des">
+                                            Full cast & crew>
+                                        </p>
+                                        <hr class="about">
+                                        <div class="description">
+                                            <div id="movie-cast"></div>
+                                        </div>
+                                    </div>
+                                    <div class="movie-des">
+                                        <p class="heading-des">
+                                            Ratings>
+                                        </p>
+                                        <hr class="about">
+                                        <div class="description">
+                                            <div id="movie-reviews"></div>
+                                        </div>
+                                    </div>
+                                    <div class="movie-des">
+                                        <div id="series-season"></div>
+                                    </div>
+                                    <div class="movie-des">
+                                        <p class="heading-des">
+                                            Awards>
+                                        </p>
+                                        <hr class="about">
+                                        <div class="description">
+                                            <p id="movie-awards"></p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="movie-informations">
+                                    <div class="movie-info">
+                                        <h3>
+                                            Director:
+                                        </h3>
+                                        <div id="movie-director"></div>
+                                    </div>
+                                    <div class="movie-info">
+                                        <h3>
+                                            Stars:
+                                        </h3>
+                                        <div id="movie-stars"></div>
+                                    </div>
+                                    <div class="movie-info">
+                                        <h3>
+                                            Genre:
+                                        </h3>
+                                        <div id="movie-genre"></div>
+                                    </div>
+                                    <div class="movie-info">
+                                        <h3>
+                                            Release date:
+                                        </h3>
+                                        <p id="movie-released"></p>
+                                    </div>
+                                    <div class="movie-info">
+                                        <h3>
+                                            Runtime:
+                                        </h3>
+                                        <p id="movie-runtime"></p>
+                                    </div>
+                                    <div class="movie-info">
+                                        <div id="movie-seasons"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <! -- Importovanje skripti za jquery, bootstrap i js -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="app.js"></script>
+
+</body>
+
+</html>
