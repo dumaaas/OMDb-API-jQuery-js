@@ -42,7 +42,7 @@ function searchMovies() {
     $.ajax({
 
         type: "GET",
-        url: "http://www.omdbapi.com/?apikey=39c93cf7&s=" + name + "&type=" + category + "&y=" + year,
+        url: "https://www.omdbapi.com/?apikey=39c93cf7&s=" + name + "&type=" + category + "&y=" + year,
         success: (response) => {
 
             let movies = response.Search;
@@ -128,7 +128,7 @@ function openMovie(query) {
     //ajax reuquest prema API-u gdje izvlacimo podatke o odredjenom filmu/seriji
     $.ajax({
         type: "GET",
-        url: "http://www.omdbapi.com/?apikey=39c93cf7&i=" + query,
+        url: "https://www.omdbapi.com/?apikey=39c93cf7&i=" + query,
         success: (response) => {
             //pomocna funkcija koja popunjava elemente potrebne za prikaz filma/serije
             showMovie(response);
@@ -150,7 +150,7 @@ function openEpisode(title, season, episode) {
     //ajax request prema API-u gdje izvlacimo podatke o odredjenoj epizodi
     $.ajax({
         type: "GET",
-        url: "http://www.omdbapi.com/?apikey=39c93cf7&i=" + title + "&season=" + season + "&episode=" + episode,
+        url: "https://www.omdbapi.com/?apikey=39c93cf7&i=" + title + "&season=" + season + "&episode=" + episode,
         success: (response) => {
             //prikazemo rezultate odredjene epizode
             showMovie(response);
@@ -302,7 +302,7 @@ function getSeason(title) {
     $.ajax({
 
         type: "GET",
-        url: "http://www.omdbapi.com/?apikey=39c93cf7&t=" + title + "&season=" + season,
+        url: "https://www.omdbapi.com/?apikey=39c93cf7&t=" + title + "&season=" + season,
         success: (response) => {
 
             let season = response.Episodes;
